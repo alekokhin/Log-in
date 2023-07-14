@@ -1,10 +1,23 @@
-import  { useState } from 'react';
-import { Box, Button, Checkbox, Divider, FormControl, FormControlLabel, FormHelperText, Link, Stack, TextField, Typography } from '@mui/material';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useState } from "react";
+import {
+  Box,
+  alpha,
+  Button,
+  Checkbox,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Link,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const LogIn = () => {
-  const color = 'linear-gradient(to right,#65d0fc, #20bdff, #4f52f7,#9294f7)';
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const color = "linear-gradient(to right,#65d0fc, #20bdff, #4f52f7,#9294f7)";
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -18,47 +31,81 @@ const LogIn = () => {
     const numberRegex = /[0-9]/;
 
     if (!lowercaseRegex.test(password)) {
-      setPasswordError('Password must include a lowercase letter');
+      setPasswordError("Password must include a lowercase letter");
       return;
     }
     if (!uppercaseRegex.test(password)) {
-      setPasswordError('Password must include an uppercase letter');
+      setPasswordError("Password must include an uppercase letter");
       return;
     }
     if (!numberRegex.test(password)) {
-      setPasswordError('Password must include a number');
+      setPasswordError("Password must include a number");
       return;
     }
     if (password.length < 8) {
-      setPasswordError('Password must be at least 8 characters long');
+      setPasswordError("Password must be at least 8 characters long");
       return;
     }
 
     // If password passes all checks, proceed with form submission or other actions
-    console.log('Password is valid');
+    console.log("Password is valid");
     // Add your desired actions here
   };
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-evenly', background: '#fff', width: '1000px', height: '500px', boxShadow: '1' }}>
-        <Box sx={{ background: color, width: '50%', height: '100%', display: 'grid', placeItems: 'center' }}>
-          <Box maxWidth={'300px'}>
-            <Typography variant="h3" color={'white'}>
-              <PlayArrowIcon fontSize='large' /> Digital platform for distance <span style={{ color: 'black' }}>learning.</span>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          background: "#fff",
+          width: "1000px",
+          height: "500px",
+          boxShadow: "1",
+        }}
+      >
+        <Box
+          sx={{
+            background: color,
+            width: "50%",
+            height: "100%",
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <Box
+            maxWidth={"300px"}
+            sx={{
+              backgroundColor: alpha("#ffffff", 0.2),
+              padding: "30px",
+              backdropFilter: "blur(50px)",
+            }}
+          >
+            <Typography variant="h3" color={"white"}>
+              <PlayArrowIcon fontSize="large" /> Digital platform for distance{" "}
+              <span style={{ color: "black" }}>learning.</span>
             </Typography>
-            <Typography color={'white'} variant='caption'>You will never know everything but you will know more.</Typography>
+            <Typography color={"white"} variant="caption">
+              You will never know everything but you will know more.
+            </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'grid', placeItems: 'center', width: '50%', height: '100%' }}>
-          <Stack maxWidth={'300px'} maxHeight={"100%"} spacing={1}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+        <Box
+          sx={{
+            display: "grid",
+            placeItems: "center",
+            width: "50%",
+            height: "100%",
+          }}
+        >
+          <Stack maxWidth={"300px"} maxHeight={"100%"} spacing={1}>
+            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
               Hey, hello 👋
             </Typography>
-            <Typography variant="inherit" sx={{ fontSize: '14px' }}>
+            <Typography variant="inherit" sx={{ fontSize: "14px" }}>
               Enter the information you entered while registering
             </Typography>
-            <FormControl  error={Boolean(passwordError)}>
+            <FormControl error={Boolean(passwordError)}>
               <TextField
                 required
                 type="email"
@@ -80,9 +127,9 @@ const LogIn = () => {
               <Box>
                 <FormControlLabel
                   sx={{
-                    width: '150px',
-                    transform: 'scale(0.7)', // Adjust the scale value as per your requirement
-                    transformOrigin: 'top left',
+                    width: "150px",
+                    transform: "scale(0.7)", // Adjust the scale value as per your requirement
+                    transformOrigin: "top left",
                   }}
                   control={<Checkbox sx={{ color: color }} />}
                   label="Remember me"
@@ -91,7 +138,7 @@ const LogIn = () => {
                   href="#"
                   underline="none"
                   color={color}
-                  sx={{ fontSize: '15px', float: 'right' }}
+                  sx={{ fontSize: "15px", float: "right" }}
                 >
                   Forgot Password?
                 </Link>
@@ -100,7 +147,7 @@ const LogIn = () => {
                 variant="text"
                 type="submit"
                 size="small"
-                sx={{ background: color, color: '#fff' }}
+                sx={{ background: color, color: "#fff" }}
                 onClick={handleFormSubmit}
               >
                 Login
@@ -108,7 +155,7 @@ const LogIn = () => {
               <Divider />
               <Button
                 size="small"
-                sx={{ backgroundColor: '#fff', border: '1px solid' }}
+                sx={{ backgroundColor: "#fff", border: "1px solid" }}
               >
                 <svg
                   aria-hidden="true"
