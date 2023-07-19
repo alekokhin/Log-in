@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent,MouseEvent, useState } from "react";
 import {
   Box,
   alpha,
@@ -19,21 +19,23 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     // Password validation
     const lowercaseRegex = /[a-z]/;
     const uppercaseRegex = /[A-Z]/;
     const numberRegex = /[0-9]/;
-
+    //! onChange-ზე მინდოდა ამ პირდაპირ ამ ფუნქციის გამოძახება მაგრამ სტეიტი ერთი ნაბიჯით უკან იყო და ვერ გავასწორე რაუნდა?
+    //? setPassword(event.target.value);
     if (!lowercaseRegex.test(password)) {
       setPasswordError("Password must include a lowercase letter");
       return;
     }
+    // Password validation
     if (!uppercaseRegex.test(password)) {
       setPasswordError("Password must include an uppercase letter");
       return;
@@ -46,9 +48,10 @@ const LogIn = () => {
       setPasswordError("Password must be at least 8 characters long");
       return;
     }
+    setPasswordError("");
+    console.log(password);
 
     // If password passes all checks, proceed with form submission or other actions
-    console.log("Password is valid");
     // Add your desired actions here
   };
 
@@ -105,7 +108,7 @@ const LogIn = () => {
             <Typography variant="inherit" sx={{ fontSize: "14px" }}>
               Enter the information you entered while registering
             </Typography>
-            <FormControl error={Boolean(passwordError)}>
+            <FormControl error={Boolean(passwordError)} sx={{display:"flex",justifyContent:"space-around",height:"270px"}}>
               <TextField
                 required
                 type="email"
@@ -152,7 +155,7 @@ const LogIn = () => {
               >
                 Login
               </Button>
-              <Divider />
+              <Divider>or</Divider>
               <Button
                 size="small"
                 sx={{ backgroundColor: "#fff", border: "1px solid" }}
